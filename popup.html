@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* Основной контейнер */
+        body {
+            width: 320px;
+            margin: 0;
+            padding: 15px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        /* Заголовок и Оценка */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        #score-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: background 0.3s ease;
+        }
+
+        .title-text {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Блок вердикта */
+        #advice {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            min-height: 60px;
+            border-left: 4px solid #2980b9;
+            margin-bottom: 20px;
+        }
+
+        /* Полоска прогресса (Качество) */
+        #statsBlock {
+            display: none; /* Скрыто до первого анализа */
+            margin-bottom: 20px;
+        }
+
+        .label-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .progress-bg {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        #q-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            transition: width 0.8s ease-in-out;
+        }
+
+        /* Кнопка */
+        #analyzeBtn {
+            width: 100%;
+            padding: 12px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        #analyzeBtn:hover {
+            background-color: #2471a3;
+        }
+
+        #analyzeBtn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        /* Ссылки на поиск (на будущее) */
+        #linksBlock {
+            display: none;
+            justify-content: space-around;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .market-link {
+            font-size: 11px;
+            color: #2980b9;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div id="score-circle">?</div>
+        <div class="title-text">ИИ-Консультант<br><span style="font-weight: normal; font-size: 12px; color: #7f8c8d;">Анализ маркетплейса</span></div>
+    </div>
+
+    <div id="advice">Откройте страницу товара на WB или Ozon и нажмите кнопку для проверки.</div>
+
+    <div id="statsBlock">
+        <div class="label-row">
+            <span>Уверенность в качестве:</span>
+            <span id="q-val">0%</span>
+        </div>
+        <div class="progress-bg">
+            <div id="q-bar"></div>
+        </div>
+    </div>
+
+    <button id="analyzeBtn">Проанализировать</button>
+
+    <!-- Скрытые ссылки для будущего функционала поиска цен -->
+    <div id="linksBlock">
+        <a href="#" id="link-ozon" target="_blank" class="market-link">Ozon</a>
+        <a href="#" id="link-wb" target="_blank" class="market-link">WB</a>
+        <a href="#" id="link-market" target="_blank" class="market-link">Яндекс</a>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
